@@ -20,3 +20,4 @@
 |蓝凌OA-poc.go|蓝凌OA-poc测试|没找到环境测试|
 | ShiroScan.go | shiro框架检测工具 | |
 | list-scan-v4-9-p3 | 绿盟漏扫html转excle | 贺sc作品 |
+| fastjsonScan.go | fastjson扫描 | |
