@@ -29,7 +29,7 @@ func GetCommandArgs() {
 	flag.StringVar(&GlobalVar.Pointkey, "key", "", "指定key进行检测（默认CBC和GCM都会检测）")
 	flag.StringVar(&GlobalVar.Aes_mode, "mode", "", "指定加密模块CBC或GCM  (只对-ser参数有效)")
 	flag.StringVar(&GlobalVar.SerFile, "ser", "", "payload的字节码文件（可通过ysoserial生成）")
-	flag.StringVar(&GlobalVar.Waf, "waf", "", "绕waf方式（u a all）")
+	flag.StringVar(&GlobalVar.Waf, "waf", "", "绕waf方式（u a）")
 	flag.Parse()
 }
 
@@ -109,9 +109,6 @@ func main() {
 
 }
 func logo() {
-	fmt.Println(" ")
-	fmt.Println("                     (裴乐专用) - 蓝鲸实验室出品专属漏洞检测工具!")
-	fmt.Println(" ")
 	fmt.Println("        基于https://github.com/myzxcg/ShiroKeyCheck修改而来,再此严重感谢原作者")
 	fmt.Println("                  增加两种绕过waf检测KEY的方法 -waf a   -waf u")
 	fmt.Println("                ---------------------------------   MrHonest 2022/1/24 02:25")
