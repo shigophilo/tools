@@ -1,0 +1,7 @@
+﻿  ConsoleApplication1.cpp
+D:\Program\GOPATH\tools\权限维持\addUser\C#\ConsoleApplication1\ConsoleApplication1.cpp(8,8): warning C4101: “dw01dRrotect”: 未引用的局部变量
+  正在生成代码
+  Previous IPDB not found, fall back to full compilation.
+  All 1 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  已完成代码的生成
+  ConsoleApplication1.vcxproj -> D:\Program\GOPATH\tools\权限维持\addUser\C#\ConsoleApplication1\x64\Release\ConsoleApplication1.exe

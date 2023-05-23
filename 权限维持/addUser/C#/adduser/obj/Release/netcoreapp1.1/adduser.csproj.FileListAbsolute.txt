@@ -1,0 +1,5 @@
+D:\Program\GOPATH\tools\权限维持\addUser\C#\adduser\obj\Release\netcoreapp1.1\adduser.csproj.AssemblyReference.cache
+D:\Program\GOPATH\tools\权限维持\addUser\C#\adduser\obj\Release\netcoreapp1.1\adduser.GeneratedMSBuildEditorConfig.editorconfig
+D:\Program\GOPATH\tools\权限维持\addUser\C#\adduser\obj\Release\netcoreapp1.1\adduser.AssemblyInfoInputs.cache
+D:\Program\GOPATH\tools\权限维持\addUser\C#\adduser\obj\Release\netcoreapp1.1\adduser.AssemblyInfo.cs
+D:\Program\GOPATH\tools\权限维持\addUser\C#\adduser\obj\Release\netcoreapp1.1\adduser.csproj.CoreCompileInputs.cache

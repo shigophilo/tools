@@ -1,0 +1,5 @@
+D:\Program\C#\find-mS-DS-CreatorSID\obj\Release\net5.0\find-mS-DS-CreatorSID.csproj.AssemblyReference.cache
+D:\Program\C#\find-mS-DS-CreatorSID\obj\Release\net5.0\find-mS-DS-CreatorSID.GeneratedMSBuildEditorConfig.editorconfig
+D:\Program\C#\find-mS-DS-CreatorSID\obj\Release\net5.0\find-mS-DS-CreatorSID.AssemblyInfoInputs.cache
+D:\Program\C#\find-mS-DS-CreatorSID\obj\Release\net5.0\find-mS-DS-CreatorSID.AssemblyInfo.cs
+D:\Program\C#\find-mS-DS-CreatorSID\obj\Release\net5.0\find-mS-DS-CreatorSID.csproj.CoreCompileInputs.cache

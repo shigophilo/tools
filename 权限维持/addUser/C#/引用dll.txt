@@ -1,0 +1,1 @@
+在 Visual Studio 中需要添加对程序集System.DirectoryServices.dll的引用
