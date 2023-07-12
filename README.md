@@ -21,3 +21,6 @@
 | ShiroScan.go | shiro框架检测工具 | |
 | list-scan-v4-9-p3 | 绿盟漏扫html转excle | 贺sc作品 |
 | fastjsonScan.go | fastjson扫描 | |
+| TPSearch.go | thinkphp日志搜索工具 |  |
+| findEcologyName.go | 泛微用户名枚举工具 | |
+| mysqlSelect.go | mysql批量查询 | 将fscan结果中的mysql弱口令验证 | 
