@@ -1,5 +1,6 @@
 |文件名|解释|备注|
 |----|----|----|
+|shellcode2exe|shellcode生成exe并与其它文件"捆绑"|[这里](https://github.com/shigophilo/shellcode2exe)|
 |mpvpn.go|迈普VPN密码破解工具|已完成|
 |inspur.go|inspur(浪潮)服务器密码破解工具|已完成|
 |nessustoexcle|nessus扫描结果转excle|计划中|
