@@ -1,6 +1,12 @@
+## 博客
+https://shigophilo.github.io/
+
+## 一些工具
 |文件名|解释|备注|
 |----|----|----|
-|shellcode2exe|shellcode生成exe并与其它文件"捆绑"|[这里](https://github.com/shigophilo/shellcode2exe)|
+| shellcode2exe | shellcode生成exe并与其它文件"捆绑" | [这里](https://github.com/shigophilo/shellcode2exe) |
+| uploadFuzz | 文件上传漏洞测试 | [这里](https://github.com/shigophilo/uploadFuzz) |
+| SWebCracker | web端账号密码爆破工具 | [这里](https://github.com/shigophilo/SWebCracker) |
 |mpvpn.go|迈普VPN密码破解工具|已完成|
 |inspur.go|inspur(浪潮)服务器密码破解工具|已完成|
 |nessustoexcle|nessus扫描结果转excle|计划中|
@@ -21,7 +27,7 @@
 |蓝凌OA-poc.go|蓝凌OA-poc测试|没找到环境测试|
 | ShiroScan.go | shiro框架检测工具 | |
 | list-scan-v4-9-p3 | 绿盟漏扫html转excle | 贺sc作品 |
-| fastjsonScan.go | fastjson扫描 | |
+| fastjsonScan.go | fastjson扫描以及利用工具 | |
 | TPSearch.go | thinkphp日志搜索工具 |  |
 | findEcologyName.go | 泛微用户名枚举工具 | |
-| mysqlSelect.go | mysql批量查询 | 将fscan结果中的mysql弱口令验证 | 
+| mysqlSelect.go | mysql批量查询 | 将fscan结果中的mysql弱口令验证 |
