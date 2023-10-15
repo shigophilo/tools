@@ -7,6 +7,7 @@ https://shigophilo.github.io/
 | shellcode2exe | shellcode生成exe并与其它文件"捆绑" | [这里](https://github.com/shigophilo/shellcode2exe) |
 | uploadFuzz | 文件上传漏洞测试 | [这里](https://github.com/shigophilo/uploadFuzz) |
 | SWebCracker | web端账号密码爆破工具 | [这里](https://github.com/shigophilo/SWebCracker) |
+| 免杀\exe2ps | exe转成powershell脚本运行 | [这里](https://github.com/shigophilo/tools/tree/master/%E5%85%8D%E6%9D%80/exe2ps)|
 |mpvpn.go|迈普VPN密码破解工具|已完成|
 |inspur.go|inspur(浪潮)服务器密码破解工具|已完成|
 |nessustoexcle|nessus扫描结果转excle|计划中|
@@ -30,4 +31,4 @@ https://shigophilo.github.io/
 | fastjsonScan.go | fastjson扫描以及利用工具 | |
 | TPSearch.go | thinkphp日志搜索工具 |  |
 | findEcologyName.go | 泛微用户名枚举工具 | |
-| mysqlSelect.go | mysql批量查询 | 将fscan结果中的mysql弱口令验证 |
+| mysqlSelect.go | mysql批量查询 | 验证fscan结果中的mysql弱口令 |
