@@ -8,6 +8,7 @@ https://shigophilo.github.io/
 | uploadFuzz | 文件上传漏洞测试 | [这里](https://github.com/shigophilo/uploadFuzz) |
 | SWebCracker | web端账号密码爆破工具 | [这里](https://github.com/shigophilo/SWebCracker) |
 | 免杀\exe2ps | exe转成powershell脚本运行 | [这里](https://github.com/shigophilo/tools/tree/master/%E5%85%8D%E6%9D%80/exe2ps)|
+| LongWenZhang(龙文章) | 钓鱼炮灰马 | [这里](https://github.com/shigophilo/LongWenZhang)|
 |mpvpn.go|迈普VPN密码破解工具|已完成|
 |inspur.go|inspur(浪潮)服务器密码破解工具|已完成|
 |nessustoexcle|nessus扫描结果转excle|计划中|
