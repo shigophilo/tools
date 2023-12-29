@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="fastjson不出网:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/fastjson_jar</output-path>
+    <root id="archive" name="fastjson不出网.jar">
+      <element id="module-output" name="fastjson不出网" />
+      <element id="extracted-dir" path="E:/Security/L-漏洞利用/Java/fastjson/Fastjson-Payload-master/Fastjson-Payload.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../../download/spring-core-4.3.30.RELEASE.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
