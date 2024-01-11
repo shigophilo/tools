@@ -10,6 +10,7 @@ https://shigophilo.github.io/
 | 免杀\exe2ps | exe转成powershell脚本运行 | [这里](https://github.com/shigophilo/tools/tree/master/%E5%85%8D%E6%9D%80/exe2ps)|
 | LongWenZhang(龙文章) | 钓鱼炮灰马 | [这里](https://github.com/shigophilo/LongWenZhang)|
 | 缝合怪 | 调用fscan,nuclei,dirsearch,subfinder,xray,httpx,进行扫描 | [这里](https://github.com/shigophilo/stitchMonster) |
+| 零零信安API使用工具 | 0.zone | [这里](https://github.com/shigophilo/0_zone) |
 |mpvpn.go|迈普VPN密码破解工具|已完成|
 |inspur.go|inspur(浪潮)服务器密码破解工具|已完成|
 |nessustoexcle|nessus扫描结果转excle|计划中|
