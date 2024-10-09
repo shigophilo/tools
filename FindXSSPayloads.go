@@ -2,69 +2,71 @@ package main
 
 import (
 	"bufio"
+	"crypto/tls"
 	"flag"
 	"fmt"
 	"io"
+	"io/ioutil"
+	"net/http"
 	"os"
 	"strings"
-	"net/http"
-	"crypto/tls"
-	"io/ioutil"
 )
+
 var out string
+
 func main() {
 	start()
 	var payloadsfile string
 	var cookie string
 	var url string
-	flag.StringVar(&url,"u","","url")
-	flag.StringVar(&payloadsfile,"p","payloads.txt","payloads file")
-	flag.StringVar(&cookie,"c","","cookie值,多个值请用\"\"(双引号)括起来")
-	flag.StringVar(&out,"o","output.txt","保存文件名 txt格式")
+	flag.StringVar(&url, "u", "", "url")
+	flag.StringVar(&payloadsfile, "p", "payloads.txt", "payloads file")
+	flag.StringVar(&cookie, "c", "", "cookie值,多个值请用\"\"(双引号)括起来")
+	flag.StringVar(&out, "o", "output.txt", "保存文件名 txt格式")
 	flag.Parse()
 	payloads_list := read_payloads(payloadsfile)
-	scan(url,cookie,payloads_list)
+	scan(url, cookie, payloads_list)
 }
 
-
-func scan(url string,cookie string,payloads []string) {
+func scan(url string, cookie string, payloads []string) {
 	var j = 0
 	var urll = ""
-		for i,poc := range payloads {
-			urll = strings.Replace(url,"*",poc,-1)
-			tr := &http.Transport{
-				TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
-			}
-			client := &http.Client{Transport: tr}
-			req, err := http.NewRequest("GET", strings.Replace(urll,"*",poc,-1),nil)
-			if err != nil {
-				fmt.Println("======失败!" + ":" + url + ":" + err.Error())
-				break
-			}
-			req.Header.Set("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:47.0) Gecko/20100101 Firefox/47.0")
-			req.Header.Set("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8")
-			if cookie != ""{
-				req.Header.Set("cookie",cookie)
-			}
-			resp, err := client.Do(req)
-			if err != nil {
-				fmt.Println("主机可能不存活")
-			}
-			defer resp.Body.Close()
-			body, err := ioutil.ReadAll(resp.Body)
-			if err != nil {
-				fmt.Println("读取失败")
-			}
-			str := string(body)
-			if resp.StatusCode == 200 && strings.Contains(str, poc) {
-				j++
-				fmt.Printf("正在扫描第%d / %d 个=====已匹配到:%d个\n",i,len(payloads),j)
-				wirte(poc)
-			}
+	for i, poc := range payloads {
+		fmt.Println("测试:", poc)
+		urll = strings.Replace(url, "*", poc, -1)
+		tr := &http.Transport{
+			TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
 		}
+		client := &http.Client{Transport: tr}
+		req, err := http.NewRequest("GET", strings.Replace(urll, "*", poc, -1), nil)
+		if err != nil {
+			fmt.Println("======失败!" + ":" + url + ":" + err.Error())
+			break
+		}
+		req.Header.Set("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:47.0) Gecko/20100101 Firefox/47.0")
+		req.Header.Set("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8")
+		if cookie != "" {
+			req.Header.Set("cookie", cookie)
+		}
+		resp, err := client.Do(req)
+		if err != nil {
+			fmt.Println("主机可能不存活")
+		}
+		defer resp.Body.Close()
+		body, err := ioutil.ReadAll(resp.Body)
+		if err != nil {
+			fmt.Println("读取失败")
+		}
+		str := string(body)
+		if resp.StatusCode == 200 && strings.Contains(str, poc) {
+			j++
+			fmt.Printf("正在扫描第%d / %d 个=====已匹配到:%d个\n", i, len(payloads), j)
+			wirte(poc)
+		}
+	}
 }
 
-func wirte(poc string){
+func wirte(poc string) {
 	ok, _ := os.OpenFile(out, os.O_WRONLY|os.O_CREATE|os.O_APPEND, 0600)
 	defer ok.Close()
 	ok.Write([]byte(poc + "\n"))

@@ -11,6 +11,8 @@ https://shigophilo.github.io/
 | LongWenZhang(龙文章) | 钓鱼炮灰马 | [这里](https://github.com/shigophilo/LongWenZhang)|
 | 缝合怪 | 调用fscan,nuclei,dirsearch,subfinder,xray,httpx,进行扫描 | [这里](https://github.com/shigophilo/stitchMonster) |
 | 零零信安API使用工具 | 0.zone | [这里](https://github.com/shigophilo/0_zone) |
+| GiveMe | 接收BurpSuite的Proxy流量,解析内容并保存 | [这里](https://github.com/shigophilo/GiveMe) |
+| fscanCheck | Fscan扫描结果验证 | [这里](https://github.com/shigophilo/fscanCheck) |
 |mpvpn.go|迈普VPN密码破解工具|已完成|
 |inspur.go|inspur(浪潮)服务器密码破解工具|已完成|
 |nessustoexcle|nessus扫描结果转excle|计划中|
