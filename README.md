@@ -13,6 +13,7 @@ https://shigophilo.github.io/
 | 零零信安API使用工具 | 0.zone | [这里](https://github.com/shigophilo/0_zone) |
 | GiveMe | 接收BurpSuite的Proxy流量,解析内容并保存 | [这里](https://github.com/shigophilo/GiveMe) |
 | fscanCheck | Fscan扫描结果验证 | [这里](https://github.com/shigophilo/fscanCheck) |
+|eue.go|smtp枚举用户名|已完成|
 |mpvpn.go|迈普VPN密码破解工具|已完成|
 |inspur.go|inspur(浪潮)服务器密码破解工具|已完成|
 |nessustoexcle|nessus扫描结果转excle|计划中|
